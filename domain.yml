@@ -1,34 +1,58 @@
-version: "2.0"
-
-intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
-responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
+version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+intents:
+- get_started
+- show_skills
+- show_projects
+- show_code
+- show_projects_personal
+- show_projects_work
+
+
+- greet
+- goodbye
+- affirm
+- deny
+- bot_challenge
+responses:
+  utter_get_started:
+  - text: "Hi, I am Martin Jaskulla's portfolio chatbot. How can I help?"
+    buttons:
+    - title: "What is your skill set?"
+      payload: '/show_skills'
+    - title: "Tell me about your projects"
+      payload: '/show_projects'
+    - title: "Just show me your code"
+      payload: '/show_code'
+  utter_show_skills:
+  - text: '[Front end developer at Accenture](https://www.linkedin.com/in/martin-jaskulla-3854b71a7/). JavaScript, Typescript, the occasional Bash and Python. Also got me some [AWS certs](https://www.youracclaim.com/users/martin-jaskulla/badges).'
+  utter_show_projects:
+  - text: 'Personal or work?'
+    buttons:
+      - title: "Personal"
+        payload: '/show_projects_personal'
+      - title: "Work"
+        payload: '/show_projects_work'
+  utter_show_code:
+    - text: 'Suit yourself: [GitHub](https://github.com/MartinJaskulla)'
+  utter_show_projects_personal:
+  - text: 'I build [this](https://metolius-simulator-3d.netlify.app/) for my climbing training board. Have a look at the [code](https://github.com/MartinJaskulla/metolius)'
+    buttons:
+      - title: "More! Random 1 Replace with Custom action in order to not show twice or just use Markdown list (Yes, Markdown list)"
+        payload: '/show_projects_personal'
+  - text: 'Rasa chooses randomly. Also option to switch to work projects in buttons'
+    buttons:
+      - title: "More! Random 2"
+        payload: '/show_projects_personal'
+  utter_show_projects_work:
+  - text: 'TODO Show work projects here'
+
+
+  utter_greet:
+  - text: Hey! How are you?
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.

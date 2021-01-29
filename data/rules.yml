@@ -1,12 +1,38 @@
 version: "2.0"
 
 rules:
+- rule: Show introduction when the conversation starts
+  steps:
+    - intent: get_started
+    - action: utter_get_started
+- rule: Tell user about my skills
+  steps:
+    - intent: show_skills
+    - action: utter_show_skills
+- rule: Differentiate between work and personal projects when asked for projects
+  steps:
+    - intent: show_projects
+    - action: utter_show_projects
+- rule: Show GitHub profile when user asks for code
+  steps:
+    - intent: show_code
+    - action: utter_show_code
+- rule: Show personal projects
+  steps:
+    - intent: show_projects_personal
+    - action: utter_show_projects_personal
+- rule: Show work projects
+  steps:
+    - intent: show_projects_work
+    - action: utter_show_projects_work
+
+
+
 
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
   - action: utter_goodbye
-
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
   - intent: bot_challenge
