@@ -19,16 +19,17 @@ intents:
   - bot_challenge
 responses:
   utter_get_started:
-    - text: "Hi, I am Martin Jaskulla's portfolio chatbot. How can I help?"
+    - text: "Hi, I am Martin's portfolio chatbot. How can I help?"
       buttons:
-        - title: "What are your technical skills?"
+        - title: "What are your skills?"
           payload: '/show_skills'
         - title: "Tell me about your projects"
           payload: '/show_projects'
-        - title: "Just show me your code"
+#          Or "CV please" instead of code
+        - title: "Just show me your code "
           payload: '/show_code'
   utter_show_skills:
-    - text: '[Front end developer at Accenture](https://www.linkedin.com/in/martin-jaskulla-3854b71a7/). JavaScript, Typescript, the occasional Bash and Python. Also got me some [AWS certs](https://www.youracclaim.com/users/martin-jaskulla/badges).'
+    - text: '[Front end developer](https://www.linkedin.com/in/martin-jaskulla-3854b71a7/). JavaScript, Typescript, the occasional Bash and Python. Also got me some [AWS certs](https://www.youracclaim.com/users/martin-jaskulla/badges).'
   utter_show_code:
     - text: 'Suit yourself: [GitHub](https://github.com/MartinJaskulla) It is bad to just show repo'
   utter_show_projects:
@@ -39,7 +40,7 @@ responses:
         - title: "Work"
           payload: '/show_projects_work'
   utter_list_projects:
-    - text: 'Pick one'
+    - text: 'Pick a project'
       buttons:
         - title: "Chatbot"
           payload: '/show_project{"project": "utter_chatbot_project"}'
@@ -48,11 +49,11 @@ responses:
         - title: "Artist"
           payload: '/show_project{"project": "utter_artist_project"}'
   utter_climbing_project:
-    - text: 'I build [this](https://metolius-simulator-3d.netlify.app/) for my climbing training board. Have a look at the [code](https://github.com/MartinJaskulla/metolius).'
+    - text: 'I build a React [app](https://metolius-simulator-3d.netlify.app/) for my climbing training board. Have a look at the [code](https://github.com/MartinJaskulla/metolius).'
   utter_chatbot_project:
-    - text: 'My portfolio is build with a [React front end](https://github.com/MartinJaskulla/portfolio-rasa) and a [Rasa back end](https://github.com/MartinJaskulla/portfolio-frontend).'
+    - text: 'martinjaskulla.dev is build with [React](https://github.com/MartinJaskulla/portfolio-rasa) and [Rasa](https://github.com/MartinJaskulla/portfolio-frontend).'
   utter_artist_project:
-    - text: 'This [artist portfolio](https://www.anischulze.net/) and a [Rasa back end](https://github.com/Ani-CMS).'
+    - text: '[anischulze.net](https://www.anischulze.net/) is build with [Angular](https://github.com/Ani-CMS) and Contentful CMS.'
 
   utter_show_projects_work:
     - text: 'TODO Show work projects here'
@@ -66,7 +67,6 @@ responses:
     - text: I am a bot, powered by Rasa.
 
 actions:
-  - action_list_projects
   - action_show_project
 
 slots:
