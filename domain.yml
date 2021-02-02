@@ -5,8 +5,8 @@ session_config:
 intents:
   - get_started
   - show_skills
-  - show_projects
   - show_code
+  - show_projects
   - show_projects_personal
   - show_projects_work
   - show_project
@@ -18,7 +18,7 @@ intents:
   - deny
   - bot_challenge
 responses:
-  utter_get_started:
+  utter_intro:
     - text: "Hi, I am Martin's portfolio chatbot. How can I help?"
       buttons:
         - title: "What are your skills?"
@@ -28,11 +28,11 @@ responses:
 #          Or "CV please" instead of code
         - title: "Just show me your code "
           payload: '/show_code'
-  utter_show_skills:
+  utter_skills:
     - text: '[Front end developer](https://www.linkedin.com/in/martin-jaskulla-3854b71a7/). JavaScript, Typescript, the occasional Bash and Python. Also got me some [AWS certs](https://www.youracclaim.com/users/martin-jaskulla/badges).'
-  utter_show_code:
+  utter_code:
     - text: 'Suit yourself: [GitHub](https://github.com/MartinJaskulla) It is bad to just show repo'
-  utter_show_projects:
+  utter_which_projects:
     - text: 'Personal or work?'
       buttons:
         - title: "Personal"
@@ -55,7 +55,7 @@ responses:
   utter_artist_project:
     - text: '[anischulze.net](https://www.anischulze.net/) is build with [Angular](https://github.com/Ani-CMS) and Contentful CMS.'
 
-  utter_show_projects_work:
+  utter_work_projects:
     - text: 'TODO Show work projects here'
 
 

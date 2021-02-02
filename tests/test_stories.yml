@@ -4,14 +4,14 @@ stories:
   - user: |
       /get_started
     intent: get_started
-  - action: utter_get_started
+  - action: utter_intro
 
 - story: show skills
   steps:
   - user: |
       /show_skills
     intent: show_skills
-  - action: utter_show_skills
+  - action: utter_skills
 
 - story: say goodbye
   steps:

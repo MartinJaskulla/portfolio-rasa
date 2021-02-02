@@ -4,19 +4,19 @@ rules:
 - rule: Show introduction when the conversation starts
   steps:
     - intent: get_started
-    - action: utter_get_started
+    - action: utter_intro
 - rule: Tell user about my skills
   steps:
     - intent: show_skills
-    - action: utter_show_skills
+    - action: utter_skills
 - rule: Differentiate between work and personal projects when asked for projects
   steps:
     - intent: show_projects
-    - action: utter_show_projects
+    - action: utter_which_projects
 - rule: Show GitHub profile when user asks for code
   steps:
     - intent: show_code
-    - action: utter_show_code
+    - action: utter_code
 - rule: Show personal projects
   steps:
     - intent: show_projects_personal
@@ -24,7 +24,7 @@ rules:
 - rule: Show work projects
   steps:
     - intent: show_projects_work
-    - action: utter_show_projects_work
+    - action: utter_work_projects
 - rule: Show work projects
   steps:
     - intent: show_project
