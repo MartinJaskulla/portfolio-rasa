@@ -20,11 +20,15 @@ rules:
 - rule: Show personal projects
   steps:
     - intent: show_projects_personal
-    - action: action_list_projects
+    - action: utter_list_projects
 - rule: Show work projects
   steps:
     - intent: show_projects_work
     - action: utter_show_projects_work
+- rule: Show work projects
+  steps:
+    - intent: show_project
+    - action: action_show_project
 
 
 

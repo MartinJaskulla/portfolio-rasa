@@ -9,6 +9,7 @@ intents:
   - show_code
   - show_projects_personal
   - show_projects_work
+  - show_project
 
 
   - greet
@@ -37,16 +38,15 @@ responses:
           payload: '/show_projects_personal'
         - title: "Work"
           payload: '/show_projects_work'
-  utter_show_personal_projects:
+  utter_list_projects:
     - text: 'Pick one'
       buttons:
         - title: "Chatbot"
-          payload: '/show_projects_personal'
-          template: 'utter_chatbot_project'
+          payload: '/show_project{"project": "utter_chatbot_project"}'
         - title: "Climbing"
-          payload: '/show_projects_personal{"template": "utter_climbing_project"}'
+          payload: '/show_project{"project": "utter_climbing_project"}'
         - title: "Artist"
-          payload: '/show_projects_personal{"template": "utter_artist_project"}'
+          payload: '/show_project{"project": "utter_artist_project"}'
   utter_climbing_project:
     - text: 'I build [this](https://metolius-simulator-3d.netlify.app/) for my climbing training board. Have a look at the [code](https://github.com/MartinJaskulla/metolius).'
   utter_chatbot_project:
@@ -67,17 +67,18 @@ responses:
 
 actions:
   - action_list_projects
+  - action_show_project
 
 slots:
+  project:
+    type: text
   projects:
     type: list
     influence_conversation: true
     initial_value: [
-      {title: 'Chatbot',payload: '/show_projects_personal{"template": "utter_chatbot_project"}'},
-      {title: 'Climbing',payload: '/show_projects_personal{"template": "utter_climbing_project"}'},
-      {title: 'Artist',payload: '/show_projects_personal{"template": "utter_artist_project"}'}
+      {title: 'Chatbot',payload: '/show_project{"project": "utter_chatbot_project"}'},
+      {title: 'Climbing',payload: '/show_project{"project": "utter_climbing_project"}'},
+      {title: 'Artist',payload: '/show_project{"project": "utter_artist_project"}'}
     ]
 entities:
-  - template
-slots:
-  - template
+  - project
