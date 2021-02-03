@@ -5,18 +5,7 @@ rules:
   steps:
     - intent: get_started
     - action: utter_intro
-- rule: Tell user about my skills
-  steps:
-    - intent: show_skills
-    - action: utter_skills
-- rule: Differentiate between work and personal projects when asked for projects
-  steps:
-    - intent: show_projects
-    - action: utter_which_projects
-- rule: Show GitHub profile when user asks for code
-  steps:
-    - intent: show_code
-    - action: utter_code
+    - action: action_remaining_suggestions
 - rule: Show personal projects
   steps:
     - intent: show_projects_personal
@@ -25,12 +14,23 @@ rules:
   steps:
     - intent: show_projects_work
     - action: utter_work_projects
-- rule: Show work projects
+- rule: Show project
   steps:
     - intent: show_project
     - action: action_show_project
-
-
+- rule: Show remaining suggestions after skills
+  steps:
+    - intent: choose_suggestion
+    - action: action_choose_suggestion
+    - slot_was_set:
+      - suggestion: utter_skills
+    - action: action_remaining_suggestions
+- rule: Do not show remaining suggestions after projects
+  steps:
+    - intent: choose_suggestion
+    - action: action_choose_suggestion
+    - slot_was_set:
+      - suggestion: utter_which_projects
 
 
 - rule: Say goodbye anytime the user says goodbye

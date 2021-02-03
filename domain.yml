@@ -4,12 +4,12 @@ session_config:
   carry_over_slots_to_new_session: true
 intents:
   - get_started
-  - show_skills
-  - show_code
-  - show_projects
+  - choose_suggestion
   - show_projects_personal
   - show_projects_work
   - show_project
+#  For NLU I will need to add intents for show_project_climbing and show_suggestion_skills etc.?
+#  or can I add /choose_suggestion{"suggestion": "/utter_show_skills"} in NLU?
 
 
   - greet
@@ -20,14 +20,6 @@ intents:
 responses:
   utter_intro:
     - text: "Hi, I am Martin's portfolio chatbot. How can I help?"
-      buttons:
-        - title: "What are your skills?"
-          payload: '/show_skills'
-        - title: "Tell me about your projects"
-          payload: '/show_projects'
-#          Or "CV please" instead of code
-        - title: "Just show me your code "
-          payload: '/show_code'
   utter_skills:
     - text: '[Front end developer](https://www.linkedin.com/in/martin-jaskulla-3854b71a7/). JavaScript, Typescript, the occasional Bash and Python. Also got me some [AWS certs](https://www.youracclaim.com/users/martin-jaskulla/badges).'
   utter_code:
@@ -68,17 +60,36 @@ responses:
 
 actions:
   - action_show_project
+  - action_choose_suggestion
+  - action_remaining_suggestions
 
 slots:
   project:
     type: text
+#    influence_conversation: true
   projects:
     type: list
-    influence_conversation: true
+    influence_conversation: true # Could be false right?
     initial_value: [
       {title: 'Chatbot',payload: '/show_project{"project": "utter_chatbot_project"}'},
       {title: 'Climbing',payload: '/show_project{"project": "utter_climbing_project"}'},
       {title: 'Artist',payload: '/show_project{"project": "utter_artist_project"}'}
     ]
+  suggestion:
+    type: categorical
+    influence_conversation: true
+    values:
+      - utter_skills
+      - utter_which_projects
+      - utter_code
+  suggestions:
+    type: list
+    influence_conversation: true
+    initial_value: [
+      { title: 'What are your skills?',payload: '/choose_suggestion{"suggestion": "utter_skills"}' },
+      { title: 'Tell me about your projects',payload: '/choose_suggestion{"suggestion": "utter_which_projects"}' },
+      { title: 'J ust show me your code',payload: '/choose_suggestion{"suggestion": "utter_code"}' }
+    ]
 entities:
   - project
+  - suggestion

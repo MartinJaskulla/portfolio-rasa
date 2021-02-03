@@ -33,3 +33,36 @@ class ActionShowProject(Action):
 
 
         # If 0 projects, reset it but show different template domain['slots']['projects']['initial_value']
+
+# Now I need to actions, one to list remaining one if other we want to relist them? and one to pick and delete. Because now I do not want to relist both
+# Or 3 actions. One is to reset. NLU "Show me all projects again"
+class ActionChooseSuggestion(Action):
+
+    def name(self) -> Text:
+        return "action_choose_suggestion"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        suggestions = tracker.get_slot('suggestions')
+        suggestion = tracker.latest_message['entities'][0]['value']
+        for i in range(len(suggestions)):
+            if suggestion in suggestions[i]['payload']:
+                del suggestions[i]
+                break
+        print('t', suggestion)
+        dispatcher.utter_message(template=suggestion)
+        return [SlotSet("suggestions", suggestions)]
+
+class ActionRemainingSuggestions(Action):
+
+    def name(self) -> Text:
+        return "action_remaining_suggestions"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        suggestions = tracker.get_slot('suggestions')
+        print('s', suggestions)
+        dispatcher.utter_message(buttons=suggestions)
+        return []
