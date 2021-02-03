@@ -69,7 +69,7 @@ slots:
 #    influence_conversation: true
   projects:
     type: list
-    influence_conversation: true # Could be false right?
+#    influence_conversation: true # Could be false right?
     initial_value: [
       {title: 'Chatbot',payload: '/show_project{"project": "utter_chatbot_project"}'},
       {title: 'Climbing',payload: '/show_project{"project": "utter_climbing_project"}'},
@@ -84,7 +84,7 @@ slots:
       - utter_code
   suggestions:
     type: list
-    influence_conversation: true
+#    influence_conversation: true
     initial_value: [
       { title: 'What are your skills?',payload: '/choose_suggestion{"suggestion": "utter_skills"}' },
       { title: 'Tell me about your projects',payload: '/choose_suggestion{"suggestion": "utter_which_projects"}' },

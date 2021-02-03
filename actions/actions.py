@@ -46,11 +46,14 @@ class ActionChooseSuggestion(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         suggestions = tracker.get_slot('suggestions')
         suggestion = tracker.latest_message['entities'][0]['value']
+        print('suggestion', suggestion)
+        print('before deletion', suggestions)
         for i in range(len(suggestions)):
             if suggestion in suggestions[i]['payload']:
+                print('deleting', suggestions[i])
                 del suggestions[i]
                 break
-        print('t', suggestion)
+        print('after deletion', suggestions)
         dispatcher.utter_message(template=suggestion)
         return [SlotSet("suggestions", suggestions)]
 
@@ -62,7 +65,8 @@ class ActionRemainingSuggestions(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # maybe I need to add second list slot with seen ones and filter them?
         suggestions = tracker.get_slot('suggestions')
-        print('s', suggestions)
+        print('listing suggestions', suggestions)
         dispatcher.utter_message(buttons=suggestions)
         return []
