@@ -55,6 +55,9 @@ class ActionChooseSuggestion(Action):
                 break
         print('after deletion', suggestions)
         dispatcher.utter_message(template=suggestion)
+        if(len(suggestions) == 0):
+            print('none')
+            return [SlotSet("suggestions", None)]
         return [SlotSet("suggestions", suggestions)]
 
 class ActionRemainingSuggestions(Action):

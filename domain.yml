@@ -1,3 +1,6 @@
+        Test if I can clear the projec slot, start new project and check if ...
+
+
 version: '2.0'
 session_config:
   session_expiration_time: 60
@@ -20,7 +23,8 @@ intents:
 responses:
   utter_intro:
     - text: "Hi, I am Martin's portfolio chatbot. How can I help?"
-  utter_skills:
+
+utter_skills:
     - text: '[Front end developer](https://www.linkedin.com/in/martin-jaskulla-3854b71a7/). JavaScript, Typescript, the occasional Bash and Python. Also got me some [AWS certs](https://www.youracclaim.com/users/martin-jaskulla/badges).'
   utter_code:
     - text: 'Suit yourself: [GitHub](https://github.com/MartinJaskulla) It is bad to just show repo'

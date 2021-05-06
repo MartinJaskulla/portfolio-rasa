@@ -32,12 +32,12 @@ rules:
     - slot_was_set:
       - suggestion: utter_code
     - action: action_remaining_suggestions
-#- rule: Do not show remaining suggestions after projects
-#  steps:
-#    - intent: choose_suggestion
-#    - action: action_choose_suggestion
-#    - slot_was_set:
-#      - suggestion: utter_which_projects
+- rule: Do not show remaining suggestions after projects
+  steps:
+    - intent: choose_suggestion
+    - action: action_choose_suggestion
+    - slot_was_set:
+      - suggestion: utter_which_projects
 
 
 - rule: Say goodbye anytime the user says goodbye
